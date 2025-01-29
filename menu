@@ -1,10 +1,12 @@
 # This is a menu template written in bash
 #
 #
+clear
 function Menu_1
 {
 option=0
 until [ "$option" = "1" ]; do
+clear
  echo "  1.) Option 1"
  echo "  2.) Option 2"
  echo "  3.) Option 3"
@@ -26,6 +28,7 @@ function Menu_2
 {
 option=0
 until [ "$option" = "2" ]; do
+clear
  echo "  1.) Option 1"
  echo "  2.) Option 2"
  echo "  3.) Option 3"
@@ -47,6 +50,7 @@ function Menu_3
 {
 option=0
 until [ "$option" = "3" ]; do
+clear
  echo "  1.) Option 1"
  echo "  2.) Option 2"
  echo "  3.) Option 3"
