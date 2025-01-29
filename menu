@@ -86,7 +86,7 @@ echo ""
 case $option in
     1 ) Menu_1 ;  ;;
     2 ) Menu_2 ;  ;;
-    3 ) Menu_3t ;  ;;
+    3 ) Menu_3 ;  ;;
     * ) tput setf 4;echo -n "myprogram@nlcs:~#:";tput setf 4;                    
 esac
 done
