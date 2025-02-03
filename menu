@@ -3,14 +3,14 @@
 # By: MBHudson 2025
 #
 clear
-function Menu_1
+function Recon
 {
 option=0
 until [ "$option" = "1" ]; do
 clear
- echo "  1.) Option 1"
- echo "  2.) Option 2"
- echo "  3.) Option 3"
+ echo "  1.) Nmap Port Scan w/OS and Version Detection"
+ echo "  2.) Nmap w/Vuln Scanner"
+ echo "  3.) Whois"
  echo -e "                                                                           \e[41m b.) Main Menu" "\e[49m"
  echo -n "myprogram@nlcc:~#:"
  read option
@@ -76,7 +76,7 @@ until [ "$option" = "4" ]; do
 
 clear
 
- echo -e "\e[91m       1.) Menu 1         2.) Menu 2         3.) Menu 3\e[0m"
+ echo -e "\e[91m       1.) Recon         2.) Menu 2         3.) Menu 3\e[0m"
 echo ""                                   
 echo ""                                                           
 echo ""
@@ -84,7 +84,7 @@ echo ""
 read option
 echo ""
 case $option in
-    1 ) Menu_1 ;  ;;
+    1 ) Recon ;  ;;
     2 ) Menu_2 ;  ;;
     3 ) Menu_3 ;  ;;
     * ) tput setf 4;echo -n "myprogram@nlcs:~#:";tput setf 4;                    
