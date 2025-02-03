@@ -16,7 +16,7 @@ clear
  read option
  echo ""
  case $option in
- 1 ) echo "Option 1" ;;
+ 1 ) ./map.sh ;;
  2 ) echo "Option 2" ;;
  3 ) echo "Option 3" ;;
  b ) main_menu ;;
