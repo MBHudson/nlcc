@@ -5,7 +5,7 @@
 clear
 echo "ENTER TARGET DOMAIN OR IP"
 read target
-clear
+#clear
 function Recon
 {
 option=0
