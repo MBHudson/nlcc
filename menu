@@ -22,7 +22,8 @@ clear
  1 ) sudo nmap $target -O -sV ;;                                                                                  
  2 ) sudo nmap $target --script /usr/share/nmap/scripts/vulners.nse -sV                                           
 read -p "PRESS ENTER TO CONTINUE" </dev/tty ;;                                                                    
- 3 ) whois $target ;;
+ 3 ) whois $target
+read -p "PRESS ENTER TO CONTINUE" </dev/tty ;;
  b ) main_menu ;;
  * ) tput setf 3;echo "echo -n "myprogram@nlcc:~#:"";tput setf 3;
  esac
