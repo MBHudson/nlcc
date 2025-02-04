@@ -13,17 +13,16 @@ until [ "$option" = "1" ]; do
 clear
  echo "  1.) Nmap Port Scan w/OS and Version Detection"
  echo "  2.) Nmap w/Vuln Scanner"
- echo "  3.) Whois"                                                                                               
+ echo "  3.) Whois"                                                  
  echo -e "                                                                           \e[41m b.) Main Menu" "\e[49m"                                                                                                                 
- echo -n "myprogram@nlcc:~#:"                                                                                     
- read option                                                                                                      
- echo ""                                                                                                          
- case $option in                                                                                                  
- 1 ) sudo nmap $target -O -sV ;;                                                                                  
- 2 ) sudo nmap $target --script /usr/share/nmap/scripts/vulners.nse -sV                                           
-read -p "PRESS ENTER TO CONTINUE" </dev/tty ;;                                                                    
- 3 ) whois $target
+ echo -n "myprogram@nlcc:~#:"
+ read option
+ echo ""
+case $option in
+ 1 ) sudo nmap $target -O -sV ;;
+ 2 ) sudo nmap $target --script /usr/share/nmap/scripts/vulners.nse -sV
 read -p "PRESS ENTER TO CONTINUE" </dev/tty ;;
+ 3 ) whois $target
  b ) main_menu ;;
  * ) tput setf 3;echo "echo -n "myprogram@nlcc:~#:"";tput setf 3;
  esac
