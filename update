@@ -1,9 +1,9 @@
 #!/bin/bash
 #cd #back to the user's dir
-git reset --hard 
+git reset --hard #resets the permissions of the contents of the dir
 git pull https://github.com/mbhudson/nlcc.git #>./update
-sudo chmod +x install
-sudo ./install
+sudo chmod +x install #gives execute permissions
+sudo ./install #runs install file
 ##IF YOURE READING THIS##
 ##tip: copy to /usr/bin the make UPDATE a shell command
 #~$: sudo cp update /usr/bin/
