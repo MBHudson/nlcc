@@ -1,6 +1,9 @@
 #!/bin/bash
 #cd #back to the user's dir
+git reset --hard 
 git pull https://github.com/mbhudson/nlcc.git #>./update
+sudo chmod +x install
+sudo ./install
 ##IF YOURE READING THIS##
 ##tip: copy to /usr/bin the make UPDATE a shell command
 #~$: sudo cp update /usr/bin/
