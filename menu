@@ -23,7 +23,7 @@ case $option in
  2 ) sudo nmap $target --script /usr/share/nmap/scripts/vulners.nse -sV
 read -p "PRESS ENTER TO CONTINUE" </dev/tty ;;
  3 ) whois $target
- b ) main_menu ;;
+ b  main_menu ;; #removed the ) because for some reason it was throwing an error
  * ) tput setf 3;echo "echo -n "myprogram@nlcc:~#:"";tput setf 3;
  esac
  done
