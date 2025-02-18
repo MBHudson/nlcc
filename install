@@ -2,4 +2,4 @@
 #sudo ./update #runs the update script                                                     
 sudo chmod +x ./* #gives execute permissions to everything in the parent folder
 sudo apt update # updates the upgradable packages list
-sudo apt install whois net-tools nmap -y # installs * packages
+sudo apt install whois ipset net-tools nmap -y # installs * packages
