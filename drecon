@@ -1,0 +1,8 @@
+#!/bin/bash
+clear
+def_target=google.com
+#echo "ENTER TARGET OR DOMAIN"
+read -p "ENTER DOMAIN ex: website.com- [Default:${def_target}]: " target
+target=${target:-${def_target}}
+clear
+sudo dnsrecon -d $target
