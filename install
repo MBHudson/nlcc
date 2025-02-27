@@ -1,5 +1,24 @@
-#!/bin/bash                                                                                                       
-#sudo ./update #runs the update script                                                     
+#!/bin/bash
+#sudo ./update #runs the update script
 sudo chmod +x ./* #gives execute permissions to everything in the parent folder
 sudo apt update # updates the upgradable packages list
-sudo apt install whois ipset net-tools nmap -y # installs * packages
+cd
+git clone https://github.com/MBHudson/IP-Tracer.git
+cd IP-Tracer
+sudo chmod +x install
+sudo ./install
+clear
+cd
+git clone https://github.com/MBHudson/pentmenu.git
+cd pentmenu
+sudo chmod +x pentmenmu
+cd
+cd nlcc
+sudo apt install whois -y #install packages
+sudo apt install ipset -y
+sudo apt install net-tools -y
+sudo apt install nmap -y
+sudo apt install hping3 -y
+sudo apt install dnsrecon -y
+sudo apt install iptables -y
+sudo apt install ufw -y
