@@ -1,0 +1,28 @@
+#!/bin/bash
+clear
+echo "DEMO Attack - By: MBHudson 2025"
+echo ""
+echo ""
+def_target=google.com
+#echo "ENTER TARGET OR DOMAIN"
+read -p "ENTER TARGET OR DOMAIN - [Default:${def_target}]: " target
+target=${target:-${def_target}}
+clear
+echo "DEMO Attack - By: MBHudson 2025"
+echo ""
+echo ""
+def_port=80
+#echo "ENTER TARGET OR DOMAIN" 
+read -p "ENTER PORT - [Default:${def_port}]: " port
+port=${port:-${def_port}}
+clear
+echo "Loading..."
+sleep 1
+xterm "nload" &
+sleep 2
+sudo etherape &
+sleep 3
+sudo ./x $target $port
+sudo killall nload
+sudo killall etherape
+clear
