@@ -85,4 +85,4 @@ sudo sort IPs.tmp1 | uniq -u
 sudo rm typedstring.tmp1 banners.tmp1
 clear
 echo "$banner"
-cat HTTPgetIPs.tmp1
+cat IPs.tmp1
