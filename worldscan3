@@ -1,0 +1,88 @@
+#!/bin/bash
+#######
+#TODO: 
+#edit rate limit (default too), 
+#add a user input search string var, 
+#redo/edit promtps, 
+#edit tmp file names   
+#######
+clear
+banner=$(figlet -d /usr/share/figlet/ -f slant.flf WorldScan && figlet -d /usr/share/figlet/ -f digital.flf By: NLCC 2025)
+echo "$banner"
+echo ""
+echo ""
+def_seconds=120
+echo "Example: 60 - for one minute. 120 - for two and so on..."
+read -p "ENTER SCAN DURATION IN SECONDS [Default:${def_seconds}]: " seconds
+seconds=${seconds:-${def_seconds}}
+clear
+echo "$banner"
+echo ""
+echo ""
+echo ""
+def_rate=5000
+echo "Example: 1000 - for one thousand packets per second."
+echo "This controls how fast the scanner goes through IP numbers"
+echo "!WARNING! This can easly burn up your internet interface device and/or hog all the available bandwith."
+read -p "ENTER SCAN RATE IN PPS [Default:${def_rate}]: " typed_rate
+typed_rate=${typed_rate:-${def_rate}}
+clear
+echo "$banner"
+echo ""
+echo ""
+echo ""
+def_iface=$(ip route get 8.8.8.8 | awk -- '{printf $5}')
+echo "This automaticaly attempts to detect the interface being used"
+echo "If you dont know just press [ENTER] but you can view all available interfaces by running the ifconfig command in another terminal"
+read -p "ENTER INTERNET INTERFACE TO USE: [Default:${def_iface}]: " typed_iface
+typed_iface=${typed_iface:-${def_iface}}
+clear
+echo "$banner"
+echo ""
+echo ""
+echo ""
+def_range=0.0.0.0/0
+echo "Example: 10.0.0.1/24 - 10.0.0.1-60 for local // 1.1.1.1-999.9.9.9.9 for remote // 0.0.0.0/0 for random remote IPs"
+read -p "ENTER SCAN RANGE: [Default:${def_range}]: " typed_range
+typed_range=${typed_range:-${def_range}}
+clear
+echo "$banner"
+echo ""
+echo ""
+echo ""
+def_port=80
+echo "Exapmle: 80 - 443 - 8080 - 8001 - 8080 - 8081"
+read -p "ENTER PORT TO SCAN: [Default:${def_port}]: " typed_port
+typed_port=${typed_port:-${def_port}}
+clear
+echo "$banner"
+echo ""
+echo ""
+def_string=Apache
+echo "Exapmle: Apache/2.4.63"
+read -p "ENTER STRING TO SEARCH FOR: [Default:${def_string}]: " typed_string
+typed_string=${typed_string:-${def_string}}
+clear
+sudo masscan -i $typed_iface -p$typed_port $typed_range --exclude 255.255.255.255 --rate=$typed_rate --banners --wait=3 -oG banners.tmp1 &
+sleep 2
+tail -F banners.tmp1 | grep -w "$typed_string" &
+clear
+echo "$banner"
+echo ""
+echo ""
+seconds=$seconds
+start="$(($(date +%s) + $seconds))"
+while [ "$start" -ge `date +%s` ]; do
+    time="$(( $start - `date +%s`))"
+    printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
+done
+sudo killall masscan
+sudo killall tail
+cat banners.tmp1 | grep -w "$typed_string" > typed1.tmp1 
+sudo grep -E -o '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)' typed1.tmp1 > typed2.tmp1 
+sudo awk '!seen[$0]++' typed2.tmp1 > IPs.tmp1
+sudo sort IPs.tmp1 | uniq -u
+sudo rm banners.tmp1 typed*
+clear
+echo "$banner"
+cat IPs.tmp1
