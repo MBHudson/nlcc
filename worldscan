@@ -1,4 +1,7 @@
 #!/bin/bash
+#######
+#TODO: edit rate limit (default too), add a user input search string var, redo/edit promtps   
+#######
 clear
 banner=$(echo "WorldScan :: By: NLCC 2025")
 def_seconds=120
