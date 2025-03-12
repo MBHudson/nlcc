@@ -7,7 +7,7 @@
 #edit tmp file names   
 #######
 clear
-banner=$(echo "WorldScan :: By: NLCC 2025")
+banner=$(figlet -d /usr/share/figlet/ -f slant.flf WorldScan && figlet -d /usr/share/figlet/ -f digital.flf By: NLCC)
 def_seconds=120
 echo "Example: 60 - for one minute. 120 - for two and so on..."
 read -p "ENTER SCAN DURATION IN SECONDS [Default:${def_seconds}]: " seconds
