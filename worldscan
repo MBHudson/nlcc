@@ -1,11 +1,4 @@
 #!/bin/bash
-#######
-#TODO: 
-#edit rate limit (default too), 
-#add a user input search string var, 
-#redo/edit promtps, 
-#edit tmp file names   
-#######
 clear
 banner=$(figlet -d /usr/share/figlet/ -f slant.flf WorldScan && figlet -d /usr/share/figlet/ -f digital.flf By: NLCC 2025)
 echo "$banner"
