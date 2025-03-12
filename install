@@ -19,6 +19,7 @@ sudo apt install ipset -y
 sudo apt install net-tools -y
 sudo apt install nmap -y
 sudo apt install hping3 -y
+sudo apt install figlet -y
 sudo apt install dnsrecon -y
 sudo apt install iptables -y
 sudo apt install ufw -y
