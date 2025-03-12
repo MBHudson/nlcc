@@ -1,5 +1,6 @@
 #!/bin/bash
 clear
+banner=$(echo "WorldScan :: By: NLCC 2025")
 def_seconds=120
 echo "Example: 60 - for one minute. 120 - for two and so on..."
 read -p "ENTER SCAN DURATION IN SECONDS [Default:${def_seconds}]: " seconds
@@ -66,3 +67,4 @@ cat banners.tmp1 | grep -w "401" > 401s.tmp1
 sudo grep -E -o '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)' 401s.tmp1 > 401IPs.tmp1 
 sudo awk '!seen[$0]++' 401IPs.tmp1 > HTTPgetIPs.tmp1
 sudo sort HTTPgetIPs.tmp1 | uniq -u
+cat HTTPgetIPs.tmp1
