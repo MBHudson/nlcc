@@ -7,13 +7,16 @@
 #edit tmp file names   
 #######
 clear
-banner=$(figlet -d /usr/share/figlet/ -f slant.flf WorldScan && figlet -d /usr/share/figlet/ -f digital.flf By: NLCC)
+banner=$(figlet -d /usr/share/figlet/ -f slant.flf WorldScan && figlet -d /usr/share/figlet/ -f digital.flf By: NLCC 2025)
+echo "$banner"
+echo ""
+echo ""
 def_seconds=120
 echo "Example: 60 - for one minute. 120 - for two and so on..."
 read -p "ENTER SCAN DURATION IN SECONDS [Default:${def_seconds}]: " seconds
 seconds=${seconds:-${def_seconds}}
 clear
-echo $banner
+echo "$banner"
 echo ""
 echo ""
 echo ""
@@ -24,7 +27,7 @@ echo "!WARNING! This can easly burn up your internet interface device and/or hog
 read -p "ENTER SCAN RATE IN PPS [Default:${def_rate}]: " typed_rate
 typed_rate=${typed_rate:-${def_rate}}
 clear
-echo $banner
+echo "$banner"
 echo ""
 echo ""
 echo ""
@@ -34,7 +37,7 @@ echo "If you dont know just press [ENTER] but you can view all available interfa
 read -p "ENTER INTERNET INTERFACE TO USE: [Default:${def_iface}]: " typed_iface
 typed_iface=${typed_iface:-${def_iface}}
 clear
-echo $banner
+echo "$banner"
 echo ""
 echo ""
 echo ""
@@ -43,7 +46,7 @@ echo "Example: 10.0.0.1/24 - 10.0.0.1-60 for local // 1.1.1.1-999.9.9.9.9 for re
 read -p "ENTER SCAN RANGE: [Default:${def_range}]: " typed_range
 typed_range=${typed_range:-${def_range}}
 clear
-echo $banner
+echo "$banner"
 echo ""
 echo ""
 echo ""
@@ -52,14 +55,14 @@ echo "Exapmle: 80 - 443 - 8080 - 8001 - 8080 - 8081"
 read -p "ENTER PORT TO SCAN: [Default:${def_port}]: " typed_port
 typed_port=${typed_port:-${def_port}}
 clear
-echo $banner
+echo "$banner"
 echo ""
 echo ""
 proxychains4 -q sudo masscan -i $typed_iface -p$typed_port $typed_range --exclude 255.255.255.255 --rate=$typed_rate --banners --wait=3 -oG banners.tmp1 &
 sleep 2
 tail -F banners.tmp1 | grep -w "401" &
 clear
-echo $banner
+echo "$banner"
 echo ""
 echo ""
 seconds=$seconds
