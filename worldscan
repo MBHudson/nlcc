@@ -78,10 +78,11 @@ while [ "$start" -ge `date +%s` ]; do
 done
 sudo killall masscan
 sudo killall tail
-cat banners.tmp1 | grep -w "$typed_string" > 401s.tmp1 
+cat banners.tmp1 | grep -w "$typed_string" > typedstring.tmp1 
 sudo grep -E -o '(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)' 401s.tmp1 > 401IPs.tmp1 
-sudo awk '!seen[$0]++' 401IPs.tmp1 > HTTPgetIPs.tmp1
-sudo sort HTTPgetIPs.tmp1 | uniq -u
+sudo awk '!seen[$0]++' typedstring.tmp1 > IPs.tmp1
+sudo sort IPs.tmp1 | uniq -u
+sudo rm typedstring.tmp1 banners.tmp1
 clear
 echo "$banner"
 cat HTTPgetIPs.tmp1
