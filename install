@@ -24,3 +24,4 @@ sudo apt install dnsrecon -y
 sudo apt install iptables -y
 sudo apt install ufw -y
 sudo apt install masscan -y
+sudo apt install pdfcrack -y
