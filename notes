@@ -1,1 +1,1 @@
-pdfcrack /home/hudsonm/nlcc/test/nlcc/crackme.pdf -w /home/hudsonm/nlcc/test/nlcc/most_used_passwords.txt
+pdfcrack /home/hudsonm/nlcc/test/nlcc/crackme.pdf -w /home/hudsonm/nlcc/test/nlcc/most_used_passwords.txt -o
