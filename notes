@@ -1,2 +1,7 @@
 pdfcrack /home/hudsonm/nlcc/test/nlcc/crackme.pdf -w /home/hudsonm/nlcc/test/nlcc/most_used_passwords.txt -o
-pdfcrack /home/hudsonm/nlcc/test/nlcc/crackme.pdf -c abcdefghijklmnopqrstuvwxyz0123456789
+pdfcrack /home/hudsonm/nlcc/test/nlcc/crackme.pdf -c abcdefghijklmnopqrstuvwxyz0123456789 -o
+
+abcdefghijklmnopqrstuvwxyz0123456789
+abcdefghijklmnopqrstuvwxyz?d
+?l0123456789
+?l?d
