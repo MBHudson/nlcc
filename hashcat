@@ -1,1 +1,5 @@
 sudo hashcat -a 3 -m 2600 hash -w 3
+
+http://103.255.15.144/phpmyadmin/tbl_change.php?db=simundu_dbkartini&table=m_user&server=1&target=&token=ed825344fcfcc0854e8bc7073e226a35
+http://103.255.15.144/
+https://hashes.com/en/tools/hash_identifier
