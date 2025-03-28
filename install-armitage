@@ -1,0 +1,12 @@
+armitage-solved
+Getting Error : Armitage not found
+
+Here's some steps in case anyone has issues:
+
+Open /etc/apt/sources.list in your favorite editor as a root user .
+Add the following lines to the list:
+deb http://http.kali.org/kali kali main non-free contrib
+deb-src http://http.kali.org/kali kali main non-free contrib
+Save File
+Open Terminal > sudo apt-get update > sudo apt-get install armitage >sudo service postgresql start > sudo msfdb init
+And you are good to Go.......
