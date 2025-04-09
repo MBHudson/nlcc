@@ -29,4 +29,4 @@ sudo apt install nc -y
 sudo apt install hydra -y
 sudo apt install slqmap -y
 sudo apt install tor -y
-
+sudo apt install curl -y
