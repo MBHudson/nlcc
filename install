@@ -27,6 +27,6 @@ sudo apt install masscan -y
 sudo apt install pdfcrack -y
 sudo apt install nc -y
 sudo apt install hydra -y
-sudo apt install slqmap -y
+sudo apt install sqlmap -y
 sudo apt install tor -y
 sudo apt install curl -y
