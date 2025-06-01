@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="42">
+  <CheatEntries/>
+  <UserdefinedSymbols/>
+  <LuaScript>
+dbk_initialize()
+dbk_useKernelmodeOpenProcess()
+dbk_useKernelmodeProcessMemoryAccess()
+ 
+if getOpenedProcessID() then openProcess(getOpenedProcessID()) end
+ 
+dbk_writesIgnoreWriteProtection(true)
+ 
+  function AOBRep(search, change)
+local aob = AOBScan(search)
+if aob then
+  for i=0,aob.Count-1 do
+    autoAssemble(aob[i]..':\ndb '..change)
+  end
+  aob.Destroy()
+end
+end
+ 
+ 
+EmuSelection = createForm(true)
+EmuSelection.Caption = 'ins'
+EmuSelection.Width = 140
+EmuSelection.Height = 150
+ 
+function smartgaga()
+emu="AndroidProcess"
+startmenu()
+EmuSelection.hide()
+end
+SmartGaGaSel = createButton(EmuSelection)
+SmartGaGaSel.Left = 12
+SmartGaGaSel.Top = 61
+SmartGaGaSel.Width = 110
+SmartGaGaSel.Height = 33
+SmartGaGaSel.onClick = smartgaga
+SmartGaGaSel.Caption = 'smartgaga'
+ 
+function gameloop()
+ 
+emu= "aow_exe"
+startmenu()
+EmuSelection.hide()
+end
+GameloopSel = createButton(EmuSelection)
+GameloopSel.Left = 12
+GameloopSel.Top = 17
+GameloopSel.Width = 110
+GameloopSel.Height = 33
+GameloopSel.onClick = gameloop
+GameloopSel.Caption = 'Gameloop'
+ 
+ function ldplayer()
+emu="LdVBoxHeadless"
+startmenu()
+EmuSelection.hide()
+end
+LdPlayerSel = createButton(EmuSelection)
+LdPlayerSel .Left = 12
+LdPlayerSel .Top = 105
+LdPlayerSel .Width = 110
+LdPlayerSel .Height = 33
+LdPlayerSel .onClick = ldplayer
+LdPlayerSel .Caption = 'LD'
+ 
+function startmenu()
+local p = io.popen('tasklist /fi "IMAGENAME eq '..emu..'.exe" /fi "MEMUSAGE gt 300000" /nh', 'r');
+local procInfo = p:read('*a');
+p:close();
+local pid = procInfo:match('%d+');
+pid = tonumber(pid);
+ 
+if(pid == nil)then
+messageDialog("You need start Game PUBG first", mtWarning, mbOK)
+closeCE()
+else
+openProcess(pid)
+function bsdk()
+searchV2= 'F0 4F 2D E9 1C B0 8D E2 14 D0 4D E2 00 A0 A0 E1 0C 06 9F E5 01 80 A0 E1'
+replaceV2= '64 09 A0 E3 1E FF 2F E1' --29 5C 8F 3E 71 0A 90 ED 04 1A
+AOBRep(searchV2,replaceV2)
+ 
+showMessage("bypass done")
+end
+ 
+ 
+--- START MENU FROM HERE ---
+MyForm = createForm(true)
+MyForm.Caption = 'FIZZ 2.0'
+MyForm.Width = 200
+MyForm.Height = 160
+MyForm.Color = 0x000000
+ 
+ 
+notice = createLabel(MyForm)
+notice.Caption= 'FiZZ VIP'
+notice.Left = 18
+notice.Top = 110
+notice.Font.Color = 0x8000FF
+ 
+-- BUTTON --
+notice = createButton(MyForm)
+notice.Left = 48
+notice.Top = 33
+notice.Width = 100
+notice.Height = 50
+notice.onClick = bsdk
+notice.Caption = 'FIZZ BYPASS'
+notice.Font.Color = 0x8000FF
+ 
+end
+end
+ 
+</LuaScript>
+</CheatTable>
+FiZZOp is offline
+Reply With Quote
+ 
+Old 29th May 2022, 07:31 PM	  #3
+izanvmi
+n00bie
+
+
+izanvmi's Avatar
+
+Join Date: May 2022
+Posts: 12
+Reputation: -141
+Rep Power: 0
+izanvmi is an outcastizanvmi is an outcast
+how do i use it when i open it in cheat engine
+izanvmi is offline
+Reply With Quote
+ 
+Reply Submit Thread to Reddit RedditSubmit Thread to Twitter TwitterSubmit Thread to Facebook Facebook
